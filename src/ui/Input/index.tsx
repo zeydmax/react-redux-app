@@ -1,6 +1,7 @@
 import * as React from "react";
+import { IInputProps } from '../../types/types';
 
-export const Input = (props: any) => {
+export const Input = (props: IInputProps) => {
   const { editor, id, value, handleChange } = props;
   return (
     <>
