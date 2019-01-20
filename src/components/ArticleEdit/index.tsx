@@ -1,7 +1,10 @@
 import * as React from "react";
 import { v1 as uuidv1 } from "uuid";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { addArticle } from "../../store/articles/actions";
+import { Input } from "../../ui/Input";
+import { Button } from "../../ui/Button";
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
@@ -15,7 +18,8 @@ class ConnectedArticleEdit extends React.Component<any, any> {
 
     this.state = {
       title: "",
-      subtitle: ""
+      subtitle: "",
+      text: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,38 +37,38 @@ class ConnectedArticleEdit extends React.Component<any, any> {
     const { title, subtitle, text } = this.state;
     const id = uuidv1();
     this.props.addArticle({ title, id, subtitle, text });
-    this.setState({ title: "", subtitle: "", text: '' });
+    this.setState({ title: "", subtitle: "", text: "" });
   }
 
   render() {
     const { title, subtitle, text } = this.state;
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          className="titleInput"
-          id="title"
-          value={title}
-          onChange={this.handleChange}
-        />
-        <label htmlFor='subtitle'>Subtitle</label>
-        <input
-          type="text"
-          className="subtitleInput"
-          id="subtitle"
-          value={subtitle}
-          onChange={this.handleChange}
-        />
-        <label htmlFor='text'>Text</label>
-        <textarea
-            className='textArea'
-            id='text'
+    const Form = (
+        <form className='form-group' onSubmit={this.handleSubmit}>
+          <Input
+            editor="textbox"
+            id="title"
+            value={title}
+            handleChange={this.handleChange}
+          />
+          <Input
+            editor="textbox"
+            id="subtitle"
+            value={subtitle}
+            handleChange={this.handleChange}
+          />
+          <Input
+            editor="multiline"
+            id="text"
             value={text}
-            onChange={this.handleChange}
-        />
-        <button type="submit">Save</button>
-      </form>
+            handleChange={this.handleChange}
+          />
+          <Button type='submit' className='btn btn-primary mt-1' desc='Save' children={<i className="fas fa-plus" />}/> <Link to="/" className='btn btn-secondary mt-1'>Return</Link>
+        </form>
+    )
+    return (
+      <>
+        {Form}
+      </>
     );
   }
 }

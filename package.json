@@ -4,7 +4,7 @@
   "description": "Test app",
   "main": "index.tsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --mode development --open --hot --history-api-fallback"
   },
   "author": "zeydmax",
   "license": "ISC",
@@ -18,16 +18,20 @@
     "redux": "^4.0.1"
   },
   "devDependencies": {
+    "@types/react-router": "^4.4.3",
+    "@types/react-router-dom": "^4.3.1",
     "@types/uuid": "^3.4.4",
     "awesome-typescript-loader": "^5.2.1",
     "immutability-helper": "^2.9.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "reselect": "^4.0.0",
     "source-map-loader": "^0.2.4",
     "tslint": "^5.12.1",
     "typescript": "^3.2.4",
     "uuid": "^3.3.2",
     "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }
