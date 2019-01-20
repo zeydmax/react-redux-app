@@ -5,7 +5,7 @@ import ArticleEdit from "./components/ArticleEdit";
 import ArticleView from "./components/ArticleView";
 import Header from './components/Header';
 
-export default class App extends React.Component<any, any> {
+export default class App extends React.Component<{}, {}> {
   render() {
     return (
       <BrowserRouter>

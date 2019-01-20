@@ -2,19 +2,19 @@ import * as React from "react";
 import { connect } from 'react-redux';
 import ArticlePreview from "./ArticlePreview";
 import DeleteArticle from '../DeleteArticle';
+import { IArticlesState, IArticles } from '../../types/types';
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IArticlesState) => {
     return { articles: state.articles }
 }
 
 //@ts-ignore
 const ConnectedArticleList = ({ articles }) => {
-  const List = articles.map((article: any) => {
+  const List = articles.map((article: IArticles) => {
     return (
-      <li className='list-group-item d-flex justify-content-between'>
+      <li key={article.id} className='list-group-item d-flex justify-content-between'>
         <ArticlePreview
-          key={article.id}
-          name={article.title}
+          title={article.title}
           preview={article.subtitle}
           id={article.id}
         />

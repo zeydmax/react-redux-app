@@ -5,15 +5,17 @@ import { Link } from "react-router-dom";
 import { addArticle } from "../../store/articles/actions";
 import { Input } from "../../ui/Input";
 import { Button } from "../../ui/Button";
+import { Dispatch } from "redux";
+import { IArticles, IFormState, IFormProps } from "../../types/types";
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    addArticle: (article: any) => dispatch(addArticle(article))
+    addArticle: (article: IArticles) => dispatch(addArticle(article))
   };
 };
 
-class ConnectedArticleEdit extends React.Component<any, any> {
-  constructor(props: any) {
+class ConnectedArticleEdit extends React.Component<IFormProps, IFormState> {
+  constructor(props: IFormProps) {
     super(props);
 
     this.state = {
@@ -43,33 +45,32 @@ class ConnectedArticleEdit extends React.Component<any, any> {
   render() {
     const { title, subtitle, text } = this.state;
     const Form = (
-        <form className='form-group' onSubmit={this.handleSubmit}>
-          <Input
-            editor="textbox"
-            id="title"
-            value={title}
-            handleChange={this.handleChange}
-          />
-          <Input
-            editor="textbox"
-            id="subtitle"
-            value={subtitle}
-            handleChange={this.handleChange}
-          />
-          <Input
-            editor="multiline"
-            id="text"
-            value={text}
-            handleChange={this.handleChange}
-          />
-          <Button type='submit' className='btn btn-primary mt-1' desc='Save' children={<i className="fas fa-plus" />}/> <Link to="/" className='btn btn-secondary mt-1'>Return</Link>
-        </form>
-    )
-    return (
-      <>
-        {Form}
-      </>
+      <form className="form-group" onSubmit={this.handleSubmit}>
+        <Input
+          editor="textbox"
+          id="title"
+          value={title}
+          handleChange={this.handleChange}
+        />
+        <Input
+          editor="textbox"
+          id="subtitle"
+          value={subtitle}
+          handleChange={this.handleChange}
+        />
+        <Input
+          editor="multiline"
+          id="text"
+          value={text}
+          handleChange={this.handleChange}
+        />
+        <Button type="submit" className="btn btn-primary mt-1" desc="Save" />{" "}
+        <Link to="/" className="btn btn-secondary mt-1">
+          Return
+        </Link>
+      </form>
     );
+    return <>{Form}</>;
   }
 }
 

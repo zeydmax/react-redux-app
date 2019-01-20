@@ -1,4 +1,5 @@
 import { ADD_ARTICLE, REMOVE_ARTICLE } from "./actionTypes";
+import { Action } from '../../types/types';
 
 
 const defaultState = {
@@ -13,7 +14,7 @@ const defaultState = {
   ],
 };
 
-export default (state = defaultState, action: any) => {
+export default (state = defaultState, action: Action) => {
   switch (action.type) {
     case ADD_ARTICLE: {
       return Object.assign({}, state, {
